@@ -12,9 +12,21 @@
     <artifactId>order-application-service</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- No outside dependency should be added to the domain application service.
+    Because it should be the independent and stable component.
+    Only add order-domain-core dependency  -->
+    <dependencies>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-domain-core</artifactId>
+            <!-- If the version tag is not added, it will give an error as could not find artifact, version is unknown.
+            So need to define the version.
+            However instead of adding it here, it is a better approach to manage all versions via base pom.xml. -->
+            <!-- It can be defined in the dependencyManagement section in the base pom.xml.
+            In this way, submodules or services can use the dependencies tag without specifying the version like here. -->
+        </dependency>
+    </dependencies>
 
 </project>

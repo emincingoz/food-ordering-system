@@ -4,14 +4,87 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Will use spring boot to create microservices -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.1</version>
+        <!-- Relative Path is used to search local file system for parent maven projects.
+        Since we have an external parent project which is spring boot there is no need to search local file system.
+        The parent pom will be loaded from the spring boot library.
+        It is the best practice to set relativePath as empty if your parent is an external project. -->
+        <relativePath/>
+    </parent>
+
     <groupId>com.emin.cingoz</groupId>
     <artifactId>food-ordering-system</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Two types of packaging pom or jar. The default ise jar packaging.
+    For main project it does not make sense to use jar packaging because there is no source code here -->
+    <packaging>pom</packaging>
+    <modules>
+        <module>order-service</module>
+        <module>common</module>
+    </modules>
+
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
+    <!-- Unifies the versions for dependencies in the child modules.  -->
+    <!-- Order-Container module do not need to put here, because it will not be used by other modules. -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>order-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>order-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>order-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>order-dataaccess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>order-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.emin.cingoz</groupId>
+                <artifactId>common-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+    <build>
+        <plugins>
+            <!-- This maven compiler plugin is necessary to force intellij idea to use this specific release version. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>

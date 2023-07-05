@@ -12,9 +12,31 @@
     <artifactId>order-container</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- Order-Container will have a dependency to all modules to get the all dependencies
+    and create a single runnable JAR file that will run the order microservice. -->
+    <dependencies>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-domain-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-application-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-dataaccess</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-messaging</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
