@@ -12,9 +12,16 @@
     <artifactId>order-domain-core</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <!-- No dependency should be added to the core domain.
+    Because it should be the most independent and stable component including the business logic.  -->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>common-domain</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

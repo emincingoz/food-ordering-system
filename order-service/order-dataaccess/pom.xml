@@ -12,9 +12,16 @@
     <artifactId>order-dataaccess</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <!-- DataAccess will have the adapters for the output ports of domain layer.
+        So it will implement the interfaces from the domain layer,
+        and it should have the dependency to order-application-service -->
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>order-application-service</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
