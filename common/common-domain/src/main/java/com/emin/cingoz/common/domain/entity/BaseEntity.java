@@ -1,4 +1,4 @@
-package com.emin.cingoz.entity;
+package com.emin.cingoz.common.domain.entity;
 
 import java.util.Objects;
 
