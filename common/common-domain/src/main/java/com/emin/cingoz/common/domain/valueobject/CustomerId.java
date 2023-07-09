@@ -1,4 +1,4 @@
-package com.emin.cingoz.domain.valueobject;
+package com.emin.cingoz.common.domain.valueobject;
 
 import java.util.UUID;
 
