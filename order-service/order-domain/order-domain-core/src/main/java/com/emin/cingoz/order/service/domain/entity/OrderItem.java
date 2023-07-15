@@ -12,6 +12,16 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     private final Money price;
     private final Money subTotal;
 
+    // OrderItem class should only be called from order entity, so remove the public access modifier.
+    void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
+        this.orderId = orderId;
+        super.setId(orderItemId);
+    }
+
+    boolean isPriceValid() {
+        return price.isGreaterThanZero() && price.equals(product.getPrice()) && price.multiply(quantity).equals(subTotal);
+    }
+
     // You can not use constructor directly now, you must use builder.
     private OrderItem(Builder builder) {
         super.setId(builder.orderItemId);
@@ -21,6 +31,9 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         subTotal = builder.subTotal;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public OrderId getOrderId() {
         return orderId;
@@ -50,10 +63,6 @@ public class OrderItem extends BaseEntity<OrderItemId> {
         private Money subTotal;
 
         private Builder() {
-        }
-
-        public static Builder builder() {
-            return new Builder();
         }
 
         public Builder orderItemId(OrderItemId val) {

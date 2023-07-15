@@ -27,6 +27,23 @@
             <!-- It can be defined in the dependencyManagement section in the base pom.xml.
             In this way, submodules or services can use the dependencies tag without specifying the version like here. -->
         </dependency>
+
+        <dependency>
+            <groupId>com.emin.cingoz</groupId>
+            <artifactId>common-domain</artifactId>
+        </dependency>
+
+        <!-- Added for data validations -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Require for transactional annotation use case's -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
